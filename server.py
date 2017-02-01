@@ -27,9 +27,10 @@ if os.name == 'nt':
         ARCH_INDEX0 = 0 if ("arm" in platform.machine().lower()) else 2
         ARCH_INDEX1 = 0 if ("64" in platform.architecture()[0]) else 1
         ARCH_PATH = ARCH_ARR [ARCH_INDEX0 + ARCH_INDEX1]
-        WK_INC_ROOT = r'C:\Program Files (x86)\Windows Kits\10\Include'
+        ARCH_INJECT = " (x86)" if ("64" in platform.architecture()[0]) else ""
+        WK_INC_ROOT = r'C:\Program Files' + ARCH_INJECT + r'\Windows Kits\10\Include'
         WK_FOUND_INC = WK_INC_ROOT + "\\" + os.listdir(path = WK_INC_ROOT)[0]
-        WK_LIB_ROOT = r'C:\Program Files (x86)\Windows Kits\10\Lib'
+        WK_LIB_ROOT = r'C:\Program Files' + ARCH_INJECT + r'\Windows Kits\10\Lib'
         WK_FOUND_LIB = WK_LIB_ROOT + "\\" + os.listdir(path = WK_LIB_ROOT)[0]
         WK_INCLUDE = WK_FOUND_INC + r'\ucrt'
         WK_LIB_UM = WK_FOUND_LIB + r'\um'+ "\\" + ARCH_PATH
